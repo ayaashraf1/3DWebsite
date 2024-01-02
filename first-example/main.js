@@ -7,13 +7,12 @@ const scene = new THREE.Scene();
 
 //sphere
 const geometry = new THREE.SphereGeometry(3, 64,64 );
-const material = new THREE.MeshStandardMaterial({color:"#00ff83"});
+const material = new THREE.MeshPhysicalMaterial({color:"#00ff83"});
 const mesh = new THREE.Mesh(geometry,material);
 scene.add(mesh);
 
 //light
 const light = new THREE.PointLight(0xffffff,90,100);
-// light.position.set( 2, 8, 3 );
 light.position.set( 0, 10, 10 );
 scene.add(light);
 
@@ -30,10 +29,12 @@ renderer.render(scene,camera);
 
 //controls
 const controls = new OrbitControls( camera, canvas);
+controls.enableDamping= true;
+controls.enablePan = false;
+controls.enableZoom = false;
+controls.autoRotate = true;
+controls.autoRotateSpeed = true;
 
-// window.addEventListener('mousemove',(e)=>{
-//   light.position.set(0,10,10);
-// })
 
 //resize
 window.addEventListener('resize',()=>{
